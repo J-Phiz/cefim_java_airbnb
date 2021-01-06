@@ -24,7 +24,7 @@ public class Reservation {
     public void afficher() {
         System.out.print("Le " + Utile.afficheDate(dateDeReservation) + ", ");
         voyageur.afficher();
-        System.out.print(" a fait une réservation (" + identifiant + ") chez ");
+        System.out.print(" a fait une réservation (id=" + identifiant + ") chez ");
         sejour.afficher();
         System.out.println("");
     }
