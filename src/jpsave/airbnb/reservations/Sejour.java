@@ -20,7 +20,7 @@ public class Sejour {
 
     public void afficher() {
         logement.afficher();
-        System.out.print(".\nLa date d'arrivée est le " + Utile.afficheDate(dateArrivee) + " pour " + nbNuits + " nuits.");
+        System.out.print(".\nLa date d'arrivée est le " + dateArrivee + " pour " + nbNuits + " nuits.");
         System.out.print("\nLe prix de ce séjour est de " + nbNuits * logement.getTarifParNuit() + "€.");
     }
 }

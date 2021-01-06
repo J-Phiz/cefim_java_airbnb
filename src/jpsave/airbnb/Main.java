@@ -2,7 +2,7 @@ package jpsave.airbnb;
 
 import jpsave.airbnb.logements.Appartement;
 import jpsave.airbnb.logements.Maison;
-import jpsave.airbnb.outils.Utile;
+import jpsave.airbnb.outils.MaDate;
 import jpsave.airbnb.reservations.Reservation;
 import jpsave.airbnb.reservations.Sejour;
 import jpsave.airbnb.utilisateurs.Hote;
@@ -31,16 +31,16 @@ public class Main {
         Voyageur voyageur2 = new Voyageur("Jacques", "Célère", 35);
 
         // Sejours
-        Sejour sejour1 =  new Sejour(Utile.creerDate("05/02/21"), 4, maison1, 3);
-        Sejour sejour2 =  new Sejour(Utile.creerDate("27/03/21"), 1, appartement1, 1);
-        Sejour sejour3 =  new Sejour(Utile.creerDate("12/04/21"), 7, maison2, 4);
-        Sejour sejour4 =  new Sejour(Utile.creerDate("30/05/21"), 20, appartement2, 2);
+        Sejour sejour1 =  new Sejour(new MaDate("05/02/2021"), 4, maison1, 3);
+        Sejour sejour2 =  new Sejour(new MaDate("27/03/2021"), 1, appartement1, 1);
+        Sejour sejour3 =  new Sejour(new MaDate("12/04/2021"), 7, maison2, 4);
+        Sejour sejour4 =  new Sejour(new MaDate("30/05/2021"), 20, appartement2, 2);
 
         // Reservations
-        Reservation reservation1 = new Reservation(sejour1, voyageur1, Utile.creerDate(3, 1, 2021));
-        Reservation reservation2 = new Reservation(sejour2, voyageur2, Utile.creerDate(4, 1, 2021));
-        Reservation reservation3 = new Reservation(sejour3, voyageur1, Utile.creerDate(5, 1, 2021));
-        Reservation reservation4 = new Reservation(sejour4, voyageur2, Utile.creerDate(6, 1, 2021));
+        Reservation reservation1 = new Reservation(sejour1, voyageur1, new MaDate(3, 1, 2021));
+        Reservation reservation2 = new Reservation(sejour2, voyageur2, new MaDate(4, 1, 2021));
+        Reservation reservation3 = new Reservation(sejour3, voyageur1, new MaDate(5, 1, 2021));
+        Reservation reservation4 = new Reservation(sejour4, voyageur2, new MaDate(6, 1, 2021));
 
         // Affichage
         System.out.println("-----------------------");

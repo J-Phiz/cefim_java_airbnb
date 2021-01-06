@@ -94,7 +94,7 @@ package jpsave.airbnb.reservations {
 }
 
 package jpsave.airbnb.outils #AAAAAA {
-    class Utile {
+    class MaDate {
         - <b>{static}STRINGSHORTDATEFORMAT</b> : String\t FINAL
         - <b>{static}STRINGLONGDATEFORMAT</b> : String\t FINAL
         - <b>{static}longDateFormat</b> : SimpleDateFormat\t FINAL
@@ -102,11 +102,16 @@ package jpsave.airbnb.outils #AAAAAA {
         - <b>{static}patternShortDate</b> : Pattern\t\t\t\t FINAL
         - <b>{static}patternLongDate</b> : Pattern\t\t\t\t FINAL
 
-        + <b>{static}creerDate</b> (String) : Date
-        + <b>{static}creerDate</b> (int, int, int) : Date
-        + <b>{static}afficheDate</b> (Date) : String
+        + <b>MaDate</b> (String)
+        + <b>MaDate</b> (int, int, int)
+
+        + <b>toString</b> () : String
     }
 }
+package java.util #555555 {
+    class Date {}
+}
+Date <|-- MaDate
 
 Hote --|>  Personne
 Voyageur -|>  Personne
