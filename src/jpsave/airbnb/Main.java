@@ -5,6 +5,8 @@ import jpsave.airbnb.logements.Maison;
 import jpsave.airbnb.outils.MaDate;
 import jpsave.airbnb.reservations.Reservation;
 import jpsave.airbnb.reservations.Sejour;
+import jpsave.airbnb.reservations.SejourCourt;
+import jpsave.airbnb.reservations.SejourLong;
 import jpsave.airbnb.utilisateurs.Hote;
 import jpsave.airbnb.utilisateurs.Voyageur;
 
@@ -31,10 +33,10 @@ public class Main {
         Voyageur voyageur2 = new Voyageur("Jacques", "Célère", 35);
 
         // Sejours
-        Sejour sejour1 =  new Sejour(new MaDate("05/02/2021"), 4, maison1, 3);
-        Sejour sejour2 =  new Sejour(new MaDate("27/03/2021"), 1, appartement1, 1);
-        Sejour sejour3 =  new Sejour(new MaDate("12/04/2021"), 7, maison2, 4);
-        Sejour sejour4 =  new Sejour(new MaDate("30/05/2021"), 20, appartement2, 2);
+        SejourCourt sejour1 =  new SejourCourt(new MaDate("5/2/21"), 4, maison1, 3);
+        SejourCourt sejour2 =  new SejourCourt(new MaDate("27/03/21"), 1, appartement1, 1);
+        SejourLong sejour3 =  new SejourLong(new MaDate("12/04/2021"), 7, maison2, 4);
+        SejourLong sejour4 =  new SejourLong(new MaDate("30/05/2021"), 20, appartement2, 2);
 
         // Reservations
         Reservation reservation1 = new Reservation(sejour1, voyageur1, new MaDate(3, 1, 2021));
@@ -43,6 +45,7 @@ public class Main {
         Reservation reservation4 = new Reservation(sejour4, voyageur2, new MaDate(6, 1, 2021));
 
         // Affichage
+        System.out.println("Bienvenue chez AirBnB");
         System.out.println("-----------------------");
         reservation1.afficher();
         System.out.println("-----------------------");

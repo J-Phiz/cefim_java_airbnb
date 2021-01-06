@@ -75,6 +75,10 @@ package jpsave.airbnb.reservations {
         + <b>verificationNombreDeVoyageurs</b> () : boolean
         + <b>afficher</b> () : void
     }
+    interface ConditionsTarifairesInterface {
+        + <b>beneficiePromotion</b> () : boolean
+        + <b>getTarif</b> () : int
+    }
     class Sejour {
         - <b>dateArrivee</b> : Date
         - <b>nbNuits</b> : int
@@ -86,6 +90,26 @@ package jpsave.airbnb.reservations {
         + <b>verificationDateArrivee</b> () : boolean
         + <b>verificationNombreDeNuits</b> () : boolean
         + <b>verificationNombreDeVoyageurs</b> () : boolean
+        + <b>afficher</b> () : void
+    }
+    class SejourCourt {
+        - <b>tarif</b> : int
+
+        + <b>SejourCourt</b> (Date, int, Logement, int)
+
+        + <b>beneficiePromotion</b> () : boolean
+        + <b>getTarif</b> () : int
+        + <b>afficher</b> () : void
+    }
+    class SejourLong {
+        - <b>{static}PROMOTION_EN_POURCENTAGE</b> : int\t FINAL
+        - <b>tarif</b> : int
+        - <b>promotion</b> : int
+
+        + <b>SejourLong</b> (Date, int, Logement, int)
+
+        + <b>beneficiePromotion</b> () : boolean
+        + <b>getTarif</b> () : int
         + <b>afficher</b> () : void
     }
     class Reservation {
@@ -129,7 +153,13 @@ Appartement --|>  Logement
 Hote "1" -- "0..n" Logement
 Voyageur "1" -- "0..n" Reservation
 Logement "1" -- "0..n" Sejour
-Reservation "1" - "1..n" Sejour
-SejourInterface - Sejour
+Reservation "1" -- "1..n" Sejour
+'Reservation "1" -- "1..n" SejourCourt
+'Reservation "1" -- "1..n" SejourLong
+Sejour - SejourInterface
+Sejour <|-- SejourCourt
+Sejour <|-- SejourLong
+SejourCourt -down- ConditionsTarifairesInterface
+SejourLong - ConditionsTarifairesInterface
 
 @enduml

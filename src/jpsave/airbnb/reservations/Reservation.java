@@ -6,7 +6,7 @@ import jpsave.airbnb.utilisateurs.Voyageur;
 import java.util.Date;
 
 public class Reservation {
-    private static int nbIdentifiants = 0;
+    private static int nbIdentifiants = 1;
     private int identifiant = 0;
     private Sejour sejour;
     private Voyageur voyageur;
@@ -22,9 +22,9 @@ public class Reservation {
     }
 
     public void afficher() {
-        System.out.print("Le " + dateDeReservation + ", ");
+        System.out.println("Réservation n°" + identifiant + " le " + dateDeReservation + " :");
         voyageur.afficher();
-        System.out.print(" a fait une réservation (id=" + identifiant + ") chez ");
+        System.out.print(" a fait une réservation chez ");
         sejour.afficher();
         System.out.println("");
     }
