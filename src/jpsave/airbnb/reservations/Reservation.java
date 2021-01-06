@@ -1,19 +1,19 @@
 package jpsave.airbnb.reservations;
 
-import jpsave.airbnb.utilisateurs.Personne;
+import jpsave.airbnb.outils.Utile;
+import jpsave.airbnb.utilisateurs.Voyageur;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Reservation {
     private static int nbIdentifiants = 0;
     private int identifiant = 0;
     private Sejour sejour;
-    private Personne voyageur;
+    private Voyageur voyageur;
     private boolean estValidee;
     private Date dateDeReservation;
 
-    public Reservation(Sejour sejour, Personne voyageur, Date dateDeReservation) {
+    public Reservation(Sejour sejour, Voyageur voyageur, Date dateDeReservation) {
         this.sejour = sejour;
         this.voyageur = voyageur;
         this.dateDeReservation = dateDeReservation;
@@ -22,8 +22,7 @@ public class Reservation {
     }
 
     public void afficher() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.print("Le " + dateFormat.format(dateDeReservation) + ", ");
+        System.out.print("Le " + Utile.afficheDate(dateDeReservation) + ", ");
         voyageur.afficher();
         System.out.print(" a fait une réservation (" + identifiant + ") chez ");
         sejour.afficher();

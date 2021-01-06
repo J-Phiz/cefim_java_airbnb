@@ -1,0 +1,120 @@
+@startuml
+
+' skinparam handwritten true
+'skinparam defaultFontName Droid
+skinparam packageStyle frame
+skinparam packageBackgroundColor #EEEEEE
+skinparam classBackgroundColor Wheat|CornflowerBlue
+
+!define FINAL &#123;final&#125;
+
+package jpsave.airbnb.utilisateurs {
+    class Personne {
+        - <b>prenom</b> : String
+        - <b>nom</b> : String
+        - <b>age:</b> : int
+
+        + <b>Personne</b> (String, String, int)
+
+        + <b>afficher</b> () : void
+    }
+    class Hote {
+        - <b>delaiDeReponse</b> : int
+
+        + <b>Hote</b> (String, String, int, int)
+
+        + <b>afficher</b> () : void
+    }
+    class Voyageur {
+
+        + <b>Voyageur</b> (String, String, int)
+    }
+}
+package jpsave.airbnb.logements {
+    abstract class Logement {
+        - <b>hote</b> : Hote
+        - <b>tarifParNuit</b> : int
+        - <b>adresse</b> : String
+        - <b>superficie</b> : int
+        - <b>nbVoyageursMax</b> : int
+        __
+        + <b>Logement</b> (Hote, int, String, int, int)
+        ..
+        + <b>{abstract}getSuperficieTotal</b> () : int
+        + <b>{abstract}afficher</b> () : void
+        ..Getter..
+        + <b>getTarifParNuit</b> () : int
+        + <b>getHote</b> () : Hote
+        + <b>getAdresse</b> () : String
+        + <b>getSuperficie</b> () : int
+        + <b>getNbVoyageursMax</b> () : int
+    }
+    class Appartement {
+        - <b>numeroEtage</b> : int
+        - <b>superficieBalcon</b> : int
+
+        + <b>Appartement</b> (Hote, int, String, int, int, int, int)
+
+        + <b>getSuperficieTotal</b> () : int
+        + <b>afficher</b> () : void
+    }
+    class Maison {
+        - <b>superficieJardin</b> : int
+        - <b>possedePiscine</b> : boolean
+
+        + <b>Maison</b> (Hote, int, String, int, int, int, boolean)
+
+        + <b>getSuperficieTotal</b> () : int
+        + <b>afficher</b>() : void
+    }
+}
+package jpsave.airbnb.reservations {
+    class Sejour {
+        - <b>dateArrivee</b> : Date
+        - <b>nbNuits</b> : int
+        - <b>logement</b> : Logement
+        - <b>nbVoyageurs</b> : int
+
+        + <b>Sejour</b> (Date, int, Logement, int)
+
+        + <b>afficher</b> () : void
+    }
+    class Reservation {
+        - <b>{static}nbIdentifiants</b> : int
+        - <b>identifiant</b> : int
+        - <b>sejour</b> : Sejour
+        - <b>voyageur</b> : Voyageur
+        - <b>estValidee</b> : boolean
+        - <b>dateDeReservation</b> : Date
+
+        + <b>Reservation</b> (Sejour, Voyageur, Date)
+
+        + <b>afficher</b> () : void
+    }
+}
+
+package jpsave.airbnb.outils #AAAAAA {
+    class Utile {
+        - <b>{static}STRINGSHORTDATEFORMAT</b> : String\t FINAL
+        - <b>{static}STRINGLONGDATEFORMAT</b> : String\t FINAL
+        - <b>{static}longDateFormat</b> : SimpleDateFormat\t FINAL
+        - <b>{static}shortDateFormat</b> : SimpleDateFormat\t FINAL
+        - <b>{static}patternShortDate</b> : Pattern\t\t\t\t FINAL
+        - <b>{static}patternLongDate</b> : Pattern\t\t\t\t FINAL
+
+        + <b>{static}creerDate</b> (String) : Date
+        + <b>{static}creerDate</b> (int, int, int) : Date
+        + <b>{static}afficheDate</b> (Date) : String
+    }
+}
+
+Hote --|>  Personne
+Voyageur -|>  Personne
+Maison --|>  Logement
+Appartement --|>  Logement
+Hote "1" -- "0..n" Logement
+Voyageur "1" -- "0..n" Reservation
+Logement "1" -- "0..n" Sejour
+Reservation "1" - "1..n" Sejour
+
+@enduml

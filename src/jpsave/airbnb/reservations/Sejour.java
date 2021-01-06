@@ -1,8 +1,8 @@
 package jpsave.airbnb.reservations;
 
 import jpsave.airbnb.logements.Logement;
+import jpsave.airbnb.outils.Utile;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Sejour {
@@ -19,9 +19,8 @@ public class Sejour {
     }
 
     public void afficher() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         logement.afficher();
-        System.out.print("\nLa date d'arrivée est le " + dateFormat.format(dateArrivee) + " pour " + nbNuits + " nuits.");
+        System.out.print(".\nLa date d'arrivée est le " + Utile.afficheDate(dateArrivee) + " pour " + nbNuits + " nuits.");
         System.out.print("\nLe prix de ce séjour est de " + nbNuits * logement.getTarifParNuit() + "€.");
     }
 }
