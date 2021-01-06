@@ -69,6 +69,12 @@ package jpsave.airbnb.logements {
     }
 }
 package jpsave.airbnb.reservations {
+    interface SejourInterface {
+        + <b>verificationDateArrivee</b> () : boolean
+        + <b>verificationNombreDeNuits</b> () : boolean
+        + <b>verificationNombreDeVoyageurs</b> () : boolean
+        + <b>afficher</b> () : void
+    }
     class Sejour {
         - <b>dateArrivee</b> : Date
         - <b>nbNuits</b> : int
@@ -77,6 +83,9 @@ package jpsave.airbnb.reservations {
 
         + <b>Sejour</b> (Date, int, Logement, int)
 
+        + <b>verificationDateArrivee</b> () : boolean
+        + <b>verificationNombreDeNuits</b> () : boolean
+        + <b>verificationNombreDeVoyageurs</b> () : boolean
         + <b>afficher</b> () : void
     }
     class Reservation {
@@ -121,5 +130,6 @@ Hote "1" -- "0..n" Logement
 Voyageur "1" -- "0..n" Reservation
 Logement "1" -- "0..n" Sejour
 Reservation "1" - "1..n" Sejour
+SejourInterface - Sejour
 
 @enduml

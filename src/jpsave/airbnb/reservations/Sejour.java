@@ -5,7 +5,7 @@ import jpsave.airbnb.outils.Utile;
 
 import java.util.Date;
 
-public class Sejour {
+public abstract class Sejour implements SejourInterface {
     private Date dateArrivee;
     private int nbNuits;
     private Logement logement;
@@ -16,6 +16,18 @@ public class Sejour {
         this.nbNuits = nbNuits;
         this.logement = logement;
         this.nbVoyageurs = nbVoyageurs;
+    }
+
+    public boolean verificationDateArrivee() {
+        return dateArrivee.after(new Date());
+    }
+
+    public boolean verificationNombreDeNuits() {
+        return (nbNuits >= 1 && nbNuits <= 31);
+    }
+
+    public boolean verificationNombreDeVoyageurs() {
+        return (nbVoyageurs <= logement.getNbVoyageursMax());
     }
 
     public void afficher() {
