@@ -14,9 +14,9 @@ import java.util.regex.Pattern;
  * @Author Jean-Philippe SAVE
  */
 public class MaDate extends Date {
-    private static final String STRINGMADATEFORMAT = "dd/MM/yyyy";
-    private static final SimpleDateFormat maDateFormat = new SimpleDateFormat(STRINGMADATEFORMAT);
-    private static final Pattern patternMaDate = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}$");
+    private static final String STRING_MADATE_FORMAT = "dd/MM/yyyy";
+    private static final SimpleDateFormat MADATE_FORMAT = new SimpleDateFormat(STRING_MADATE_FORMAT);
+    private static final Pattern PATTERN_MADATE = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}$");
 
     /**
      * Internal method that check that the strMaDate format given is supported.
@@ -27,7 +27,7 @@ public class MaDate extends Date {
      * @throws Exception if strMaDate format is not supported
      */
     private static String dateStringCheckAndConvert(String strMaDate) throws Exception {
-        Matcher matchMaDate = patternMaDate.matcher(strMaDate);
+        Matcher matchMaDate = PATTERN_MADATE.matcher(strMaDate);
 
         if (matchMaDate.find()) {
             String[] strDate = strMaDate.split("/");
@@ -64,6 +64,6 @@ public class MaDate extends Date {
      */
     @Override
     public String toString() {
-        return maDateFormat.format(this);
+        return MADATE_FORMAT.format(this);
     }
 }

@@ -131,9 +131,9 @@ package jpsave.airbnb.reservations {
 
 package jpsave.airbnb.outils #AAAAAA {
     class MaDate {
-        - <b>{static}STRINGMADATEFORMAT</b> : String\t FINAL
-        - <b>{static}maDateFormat</b> : SimpleDateFormat\t FINAL
-        - <b>{static}patternMaDate</b> : Pattern\t\t\t\t FINAL
+        - <b>{static}STRING_MADATE_FORMAT</b> : String\t FINAL
+        - <b>{static}MADATE_FORMAT</b> : SimpleDateFormat\t FINAL
+        - <b>{static}PATTERN_MADATE</b> : Pattern\t\t\t\t FINAL
 
         + <b>MaDate</b> (String)
         + <b>MaDate</b> (int, int, int)
