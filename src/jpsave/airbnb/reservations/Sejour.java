@@ -25,16 +25,19 @@ public abstract class Sejour implements SejourInterface {
      */
     //public abstract boolean verificationNombreDeNuits();
 
+    @Override
     public boolean verificationDateArrivee() {
         return dateArrivee.after(new Date());
     }
 
+    @Override
     public boolean verificationNombreDeVoyageurs() {
         return (nbVoyageurs <= logement.getNbVoyageursMax());
     }
 
     public abstract void miseAJourDuTarif();
 
+    @Override
     public void afficher() {
         logement.afficher();
         System.out.print(".\nLa date d'arrivée est le " + dateArrivee + " pour " + nbNuits + " nuits.");

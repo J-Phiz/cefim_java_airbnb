@@ -10,22 +10,27 @@ public class SejourCourt extends Sejour implements ConditionsTarifairesInterface
        super(dateArrivee, nbNuits, logement, nbVoyageurs);
     }
 
+    @Override
     public boolean verificationNombreDeNuits() {
         return (nbNuits >= 1 && nbNuits < 6);
     }
 
+    @Override
     public boolean beneficiePromotion() {
         return false;
     }
 
+    @Override
     public int getTarif() {
        return tarif;
     }
 
+    @Override
     public void miseAJourDuTarif() {
         tarif = logement.getTarifParNuit() * nbNuits;
     }
 
+    @Override
     public void afficher() {
         super.afficher();
         System.out.print("\nLe prix de ce séjour est de " + tarif + "€.");
