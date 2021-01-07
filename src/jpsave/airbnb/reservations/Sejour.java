@@ -6,7 +6,7 @@ import java.util.Date;
 
 public abstract class Sejour implements SejourInterface {
     private Date dateArrivee;
-    private Logement logement;
+    protected Logement logement;
     private int nbVoyageurs;
     protected int nbNuits;
     protected int tarif;
@@ -16,7 +16,7 @@ public abstract class Sejour implements SejourInterface {
         this.nbNuits = nbNuits;
         this.logement = logement;
         this.nbVoyageurs = nbVoyageurs;
-        miseAJourDuTarif(logement.getTarifParNuit());
+        miseAJourDuTarif();
     }
 
     /* Même si cette fct est demandée par l'interface
@@ -33,7 +33,7 @@ public abstract class Sejour implements SejourInterface {
         return (nbVoyageurs <= logement.getNbVoyageursMax());
     }
 
-    public abstract void miseAJourDuTarif(int tarifParNuit);
+    public abstract void miseAJourDuTarif();
 
     public void afficher() {
         logement.afficher();

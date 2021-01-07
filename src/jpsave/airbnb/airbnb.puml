@@ -81,8 +81,8 @@ package jpsave.airbnb.reservations {
     }
     abstract class Sejour {
         - <b>dateArrivee</b> : Date
-        - <b>logement</b> : Logement
         - <b>nbVoyageurs</b> : int
+        # <b>logement</b> : Logement
         # <b>nbNuits</b> : int
         # <b>tarif</b> : int
         __

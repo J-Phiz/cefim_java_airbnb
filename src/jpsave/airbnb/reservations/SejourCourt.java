@@ -22,8 +22,8 @@ public class SejourCourt extends Sejour implements ConditionsTarifairesInterface
        return tarif;
     }
 
-    public void miseAJourDuTarif(int tarifParNuit) {
-        tarif = tarifParNuit * nbNuits;
+    public void miseAJourDuTarif() {
+        tarif = logement.getTarifParNuit() * nbNuits;
     }
 
     public void afficher() {
