@@ -7,39 +7,31 @@ import java.util.regex.Pattern;
 
 /**
  * Class that extends Date class to support French date formats creation and print :<ul>
- *  <li>dd/MM/yyyy</li>
- *  <li>dd/MM/yy</li>
- *  <li>dd, MM, yyyy</li>
+ *  <li>dayNum/monthNum/yearNum</li>
+ *  <li>dayNum, monthNum, yearNum</li>
  * </ul>
  *
  * @Author Jean-Philippe SAVE
  */
 public class MaDate extends Date {
-
-    private static final String STRINGSHORTDATEFORMAT = "dd/MM/yy";
-    private static final String STRINGLONGDATEFORMAT = "dd/MM/yyyy";
-    private static final SimpleDateFormat longDateFormat = new SimpleDateFormat(STRINGLONGDATEFORMAT);
-    private static final SimpleDateFormat shortDateFormat = new SimpleDateFormat(STRINGSHORTDATEFORMAT);
-    private static final Pattern patternShortDate = Pattern.compile("^[0-9]{2}/[0-9]{2}/[0-9]{2}$");
-    private static final Pattern patternLongDate = Pattern.compile("^[0-9]{2}/[0-9]{2}/[0-9]{4}$");
+    private static final String STRINGMADATEFORMAT = "dd/MM/yyyy";
+    private static final SimpleDateFormat maDateFormat = new SimpleDateFormat(STRINGMADATEFORMAT);
+    private static final Pattern patternMaDate = Pattern.compile("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{2,4}$");
 
     /**
-     * Internal method that check that the stringDate format given is supported.
-     * And if supported, it converts it to a long.
+     * Internal method that check that the strMaDate format given is supported.
+     * And if supported, it converts it to a string accepted by Date.
      *
-     * @param stringDate
-     * @return the stringDate converted a long
-     * @throws Exception if stringDate format is not supported
+     * @param strMaDate the given string Date to check
+     * @return the accepted string format for Date
+     * @throws Exception if strMaDate format is not supported
      */
-    private static long dateStringCheckAndConvert(String stringDate) throws Exception {
-        Matcher matchShortDate = patternShortDate.matcher(stringDate);
-        Matcher matchLongDate = patternLongDate.matcher(stringDate);
+    private static String dateStringCheckAndConvert(String strMaDate) throws Exception {
+        Matcher matchMaDate = patternMaDate.matcher(strMaDate);
 
-        if(matchShortDate.find()) {
-            return shortDateFormat.parse(stringDate).getTime();
-        }
-        if(matchLongDate.find()) {
-            return longDateFormat.parse(stringDate).getTime();
+        if (matchMaDate.find()) {
+            String[] strDate = strMaDate.split("/");
+            return ("" + strDate[1] + "/" + strDate[0] + "/" + strDate[2]);
         }
         throw new Exception("Erreur de saisie de date");
     }
@@ -47,15 +39,12 @@ public class MaDate extends Date {
     /**
      * Class Constructor
      *
-     * @param stringDate accepted formats are : dd/MM/yy or dd/MM/yyyy
+     * @param stringDate accepted format is : dayNum/monthNum/yearNum
      * @throws Exception check input format
      */
     public MaDate(String stringDate) throws Exception {
         super(dateStringCheckAndConvert(stringDate));
     }
-//    public MaDate(String stringDate) {
-//            super(stringDate);
-//    }
 
     /**
      * Class Constructor
@@ -75,6 +64,6 @@ public class MaDate extends Date {
      */
     @Override
     public String toString() {
-        return longDateFormat.format(this);
+        return maDateFormat.format(this);
     }
 }
