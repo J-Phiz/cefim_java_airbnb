@@ -16,21 +16,29 @@ public class Menu {
         System.out.println("5 : Fermer le programme");
     }
 
+    static int choix(int maxValue) {
+        int valChoix = 0;
+
+        while(true) {
+            try {
+                valChoix = scanner.nextInt();
+                if(valChoix >= 1 && valChoix <= maxValue) {
+                    return valChoix;
+                }
+            } catch(Exception e) {
+                System.out.println("Nous n'avons pas compris votre choix !");
+                scanner.next();
+            }
+            System.out.println("Faites un choix compris entre 1 et " + maxValue +  ".");
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Bienvenue chez AirBnB");
-
         scanner = new Scanner(System.in);
 
-        int choix = 0;
-        do {
-            listerMenu();
-            choix = scanner.nextInt();
-
-            if (choix < 1 || choix > 5)
-                System.out.println("Erreur dans votre choix");
-        } while (choix < 1 || choix > 5);
-
-        System.out.println("Votre choix est : " + choix);
+        listerMenu();
+        System.out.println("Votre choix est : " + choix(5));
 
         scanner.close();
     }
