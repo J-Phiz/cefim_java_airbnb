@@ -5,11 +5,13 @@ import jpsave.airbnb.logements.Logement;
 import java.util.Date;
 
 public class SejourCourt extends Sejour implements ConditionsTarifairesInterface {
-    private int tarif;
 
     public SejourCourt(Date dateArrivee, int nbNuits, Logement logement, int nbVoyageurs) {
        super(dateArrivee, nbNuits, logement, nbVoyageurs);
-       tarif = logement.getTarifParNuit() * nbNuits;
+    }
+
+    public boolean verificationNombreDeNuits() {
+        return (nbNuits >= 1 && nbNuits < 6);
     }
 
     public boolean beneficiePromotion() {
@@ -18,6 +20,10 @@ public class SejourCourt extends Sejour implements ConditionsTarifairesInterface
 
     public int getTarif() {
        return tarif;
+    }
+
+    public void miseAJourDuTarif(int tarifParNuit) {
+        tarif = tarifParNuit * nbNuits;
     }
 
     public void afficher() {

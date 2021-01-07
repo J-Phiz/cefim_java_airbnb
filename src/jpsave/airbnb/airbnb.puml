@@ -1,7 +1,7 @@
 @startuml
 
 ' skinparam handwritten true
-'skinparam defaultFontName Droid
+'skinparam defaultFontName Jetbrains Mono
 skinparam packageStyle frame
 skinparam packageBackgroundColor #EEEEEE
 skinparam classBackgroundColor Wheat|CornflowerBlue
@@ -79,36 +79,39 @@ package jpsave.airbnb.reservations {
         + <b>beneficiePromotion</b> () : boolean
         + <b>getTarif</b> () : int
     }
-    class Sejour {
+    abstract class Sejour {
         - <b>dateArrivee</b> : Date
-        - <b>nbNuits</b> : int
         - <b>logement</b> : Logement
         - <b>nbVoyageurs</b> : int
-
+        # <b>nbNuits</b> : int
+        # <b>tarif</b> : int
+        __
         + <b>Sejour</b> (Date, int, Logement, int)
-
+        ..
+        + <b>{abstract}miseAJourDuTarif</b> () : int
+        ..
         + <b>verificationDateArrivee</b> () : boolean
-        + <b>verificationNombreDeNuits</b> () : boolean
         + <b>verificationNombreDeVoyageurs</b> () : boolean
         + <b>afficher</b> () : void
     }
     class SejourCourt {
-        - <b>tarif</b> : int
-
         + <b>SejourCourt</b> (Date, int, Logement, int)
 
+        + <b>verificationNombreDeNuits</b> () : boolean
         + <b>beneficiePromotion</b> () : boolean
+        + <b>miseAJourDuTarif</b> () : int
         + <b>getTarif</b> () : int
         + <b>afficher</b> () : void
     }
     class SejourLong {
         - <b>{static}PROMOTION_EN_POURCENTAGE</b> : int\t FINAL
-        - <b>tarif</b> : int
         - <b>promotion</b> : int
 
         + <b>SejourLong</b> (Date, int, Logement, int)
 
+        + <b>verificationNombreDeNuits</b> () : boolean
         + <b>beneficiePromotion</b> () : boolean
+        + <b>miseAJourDuTarif</b> () : int
         + <b>getTarif</b> () : int
         + <b>afficher</b> () : void
     }
@@ -128,12 +131,9 @@ package jpsave.airbnb.reservations {
 
 package jpsave.airbnb.outils #AAAAAA {
     class MaDate {
-        - <b>{static}STRINGSHORTDATEFORMAT</b> : String\t FINAL
-        - <b>{static}STRINGLONGDATEFORMAT</b> : String\t FINAL
-        - <b>{static}longDateFormat</b> : SimpleDateFormat\t FINAL
-        - <b>{static}shortDateFormat</b> : SimpleDateFormat\t FINAL
-        - <b>{static}patternShortDate</b> : Pattern\t\t\t\t FINAL
-        - <b>{static}patternLongDate</b> : Pattern\t\t\t\t FINAL
+        - <b>{static}STRINGMADATEFORMAT</b> : String\t FINAL
+        - <b>{static}maDateFormat</b> : SimpleDateFormat\t FINAL
+        - <b>{static}patternMaDate</b> : Pattern\t\t\t\t FINAL
 
         + <b>MaDate</b> (String)
         + <b>MaDate</b> (int, int, int)
@@ -154,8 +154,6 @@ Hote "1" -- "0..n" Logement
 Voyageur "1" -- "0..n" Reservation
 Logement "1" -- "0..n" Sejour
 Reservation "1" -- "1..n" Sejour
-'Reservation "1" -- "1..n" SejourCourt
-'Reservation "1" -- "1..n" SejourLong
 Sejour - SejourInterface
 Sejour <|-- SejourCourt
 Sejour <|-- SejourLong

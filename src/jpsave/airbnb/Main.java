@@ -4,7 +4,6 @@ import jpsave.airbnb.logements.Appartement;
 import jpsave.airbnb.logements.Maison;
 import jpsave.airbnb.outils.MaDate;
 import jpsave.airbnb.reservations.Reservation;
-import jpsave.airbnb.reservations.Sejour;
 import jpsave.airbnb.reservations.SejourCourt;
 import jpsave.airbnb.reservations.SejourLong;
 import jpsave.airbnb.utilisateurs.Hote;

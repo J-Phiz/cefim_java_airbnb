@@ -6,28 +6,34 @@ import java.util.Date;
 
 public abstract class Sejour implements SejourInterface {
     private Date dateArrivee;
-    private int nbNuits;
     private Logement logement;
     private int nbVoyageurs;
+    protected int nbNuits;
+    protected int tarif;
 
     public Sejour(Date dateArrivee, int nbNuits, Logement logement, int nbVoyageurs) {
         this.dateArrivee = dateArrivee;
         this.nbNuits = nbNuits;
         this.logement = logement;
         this.nbVoyageurs = nbVoyageurs;
+        miseAJourDuTarif(logement.getTarifParNuit());
     }
+
+    /* Même si cette fct est demandée par l'interface
+     * comme la classe Sejour est abstraite
+     * il suffit que les enfants définisse la fonction
+     */
+    //public abstract boolean verificationNombreDeNuits();
 
     public boolean verificationDateArrivee() {
         return dateArrivee.after(new Date());
     }
 
-    public boolean verificationNombreDeNuits() {
-        return (nbNuits >= 1 && nbNuits <= 31);
-    }
-
     public boolean verificationNombreDeVoyageurs() {
         return (nbVoyageurs <= logement.getNbVoyageursMax());
     }
+
+    public abstract void miseAJourDuTarif(int tarifParNuit);
 
     public void afficher() {
         logement.afficher();
