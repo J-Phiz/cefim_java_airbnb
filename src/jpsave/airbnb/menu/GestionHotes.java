@@ -38,22 +38,22 @@ public class GestionHotes {
     }
 
     static void listerHotes() {
-        System.out.println("----------------------------------------");
-        System.out.println("Saisir une option :");
-        System.out.println("1 : Ajouter un hôte");
-        System.out.println("2 : Supprimer un hôte");
-        System.out.println("3 : Retour");
+        while(true) {
+            System.out.println("----------------------------------------");
+            System.out.println("Saisir une option :");
+            System.out.println("1 : Ajouter un hôte");
+            System.out.println("2 : Supprimer un hôte");
+            System.out.println("3 : Retour");
 
-        switch (Menu.choix(3)) {
-            case 1:
+            int valChoix = Menu.choix(3);
+            if(valChoix == 1) {
                 ajouterHote();
-                break;
-            case 2:
+            } else if (valChoix == 2) {
                 supprimerHote();
+            } else {
                 break;
-            case 3:
-                Menu.listerMenu();
-                break;
+            }
         }
+        Menu.listerMenu();
     }
 }
