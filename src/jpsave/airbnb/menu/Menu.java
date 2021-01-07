@@ -1,6 +1,5 @@
 package jpsave.airbnb.menu;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Menu {
@@ -14,6 +13,15 @@ public class Menu {
         System.out.println("3 : Liste des voyageurs");
         System.out.println("4 : Liste des reservations");
         System.out.println("5 : Fermer le programme");
+
+        switch (Menu.choix(5)) {
+            case 1:
+                GestionHotes.listerHotes();
+                break;
+            default:
+            case 5:
+                break;
+        }
     }
 
     static int choix(int maxValue) {
@@ -38,7 +46,6 @@ public class Menu {
         scanner = new Scanner(System.in);
 
         listerMenu();
-        System.out.println("Votre choix est : " + choix(5));
 
         scanner.close();
     }
