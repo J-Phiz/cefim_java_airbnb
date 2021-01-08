@@ -1,10 +1,8 @@
 package jpsave.airbnb.menu;
 
-import jpsave.airbnb.outils.MaDate;
-import jpsave.airbnb.utilisateurs.Hote;
 import jpsave.airbnb.utilisateurs.Personne;
 
-import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class GestionHotes {
 
@@ -22,13 +20,17 @@ public class GestionHotes {
                 prenom = Menu.scanner.next();
                 System.out.print("Saisir l'âge de l'hôte : ");
                 age = Menu.scanner.nextInt();
+                if(age < 18)
+                    throw new NumberFormatException();
                 Personne personne = new Personne(prenom, nom, age);
                 personne.afficher();
                 System.out.println(" a été ajouté comme hôte.");
                 break;
-            } catch (Exception e) {
-                System.out.println("Nous n'avons pas compris votre saisie !");
+            } catch (InputMismatchException e) {
                 Menu.scanner.next();
+                System.out.println("Nous n'avons pas compris votre saisie !");
+            } catch (NumberFormatException e) {
+                System.out.println("L'hôte doit être majeur pour s'enregister !");
             }
         }
     }

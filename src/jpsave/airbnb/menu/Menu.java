@@ -20,6 +20,7 @@ public class Menu {
                 break;
             default:
             case 5:
+                System.out.println("A bientôt");
                 break;
         }
     }
