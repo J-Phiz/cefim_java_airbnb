@@ -99,7 +99,7 @@ package jpsave.airbnb.reservations {
 
         + <b>verificationNombreDeNuits</b> () : boolean
         + <b>beneficiePromotion</b> () : boolean
-        + <b>miseAJourDuTarif</b> () : int
+        + <b>miseAJourDuTarif</b> () : void
         + <b>getTarif</b> () : int
         + <b>afficher</b> () : void
     }
@@ -111,7 +111,7 @@ package jpsave.airbnb.reservations {
 
         + <b>verificationNombreDeNuits</b> () : boolean
         + <b>beneficiePromotion</b> () : boolean
-        + <b>miseAJourDuTarif</b> () : int
+        + <b>miseAJourDuTarif</b> () : void
         + <b>getTarif</b> () : int
         + <b>afficher</b> () : void
     }
@@ -138,6 +138,7 @@ package jpsave.airbnb.outils #AAAAAA {
         + <b>MaDate</b> (String)
         + <b>MaDate</b> (int, int, int)
 
+        - {static}<b>dateStringCheckAndConvert</b> (String) : String
         + <b>toString</b> () : String
     }
 }
