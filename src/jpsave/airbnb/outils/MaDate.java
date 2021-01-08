@@ -2,6 +2,7 @@ package jpsave.airbnb.outils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,25 +25,24 @@ public class MaDate extends Date {
      *
      * @param strMaDate the given string Date to check
      * @return the accepted string format for Date
-     * @throws Exception if strMaDate format is not supported
+     * @throws InputMismatchException if strMaDate format is not supported
      */
-    private static String dateStringCheckAndConvert(String strMaDate) throws Exception {
+    private static String dateStringCheckAndConvert(String strMaDate) {
         Matcher matchMaDate = PATTERN_MADATE.matcher(strMaDate);
 
         if (matchMaDate.find()) {
             String[] strDate = strMaDate.split("/");
             return ("" + strDate[1] + "/" + strDate[0] + "/" + strDate[2]);
         }
-        throw new Exception("Erreur de saisie de date");
+        throw new InputMismatchException("Erreur de saisie de date");
     }
 
     /**
      * Class Constructor
      *
      * @param stringDate accepted format is : dayNum/monthNum/yearNum
-     * @throws Exception check input format
      */
-    public MaDate(String stringDate) throws Exception {
+    public MaDate(String stringDate) {
         super(dateStringCheckAndConvert(stringDate));
     }
 
