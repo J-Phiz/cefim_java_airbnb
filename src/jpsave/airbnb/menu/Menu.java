@@ -86,7 +86,7 @@ public class Menu {
                 GestionHotes.listerHotes();
                 break;
             case 3:
-//                GestionVoyageurs.listerVoyageurs();
+              GestionVoyageurs.listerVoyageurs();
                 break;
             default:
             case 5:
