@@ -27,29 +27,25 @@ public class GestionHotes {
 
     private static void supprimerHote() throws IndexOutOfBoundsException {
         System.out.println("----------------------------------------");
-        System.out.print("Saisir le nom de l'hôte : ");
-        String nom = Menu.scanner.next();
 
-        System.out.print("Saisir le prénom de l'hôte : ");
-        String prenom = Menu.scanner.next();
+        System.out.print("Saisir le numéro de l'hôte à supprimer : ");
+        int idx = Menu.scanner.nextInt();
+        if (idx < 1 || idx >= Menu.hotes.size())
+            throw new IndexOutOfBoundsException();
 
-        Hote userHote = new Hote(prenom, nom, 1);
-
-        for (int i = 0; i < Menu.hotes.size(); i++) {
-            Hote currentHote = Menu.hotes.get(i);
-            if (userHote.equals(currentHote)) {
-                currentHote.afficher();
-                Menu.hotes.remove(i);
-                System.out.println(" a été supprimé.");
-                return;
-            }
-        }
-        throw new IndexOutOfBoundsException();
+        Menu.hotes.remove(idx);
+        System.out.println("L'hôte n°" + idx + " à été supprimé.");
     }
 
     static void listerHotes() {
         while(true) {
             System.out.println("----------------------------------------");
+            for (int i = 0; i < Menu.hotes.size(); i++) {
+                System.out.print(i + " : ");
+                Menu.hotes.get(i).afficher();
+                System.out.println();
+            }
+            System.out.println();
             System.out.println("Saisir une option :");
             System.out.println("1 : Ajouter un hôte");
             System.out.println("2 : Supprimer un hôte");
@@ -70,6 +66,9 @@ public class GestionHotes {
                     supprimerHote();
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Nous n'avons pas trouvé l'identifiant de l'hôte !");
+                } catch (InputMismatchException e) {
+                Menu.scanner.next();
+                System.out.println("Nous n'avons pas compris votre saisie !");
                 }
             } else {
                 break;
