@@ -2,7 +2,13 @@ package jpsave.airbnb.utilisateurs;
 
 public class Hote extends Personne {
 
+    private static final int DELAI_REPONSE_STANDARD = 48;
     private int delaiDeReponse;
+
+    public Hote(String prenom, String nom, int age) {
+        super(prenom, nom, age);
+        this.delaiDeReponse = DELAI_REPONSE_STANDARD;
+    }
 
     public Hote(String prenom, String nom, int age, int delaiDeReponse) {
         super(prenom, nom, age);

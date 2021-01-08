@@ -19,9 +19,11 @@ package jpsave.airbnb.utilisateurs {
         + <b>afficher</b> () : void
     }
     class Hote {
+        - <b>{static}DELAI_REPONSE_STANDARD</b> : int\t FINAL
         - <b>delaiDeReponse</b> : int
 
         + <b>Hote</b> (String, String, int, int)
+        + <b>Hote</b> (String, String, int)
 
         + <b>afficher</b> () : void
     }
