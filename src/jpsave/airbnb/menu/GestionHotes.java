@@ -6,9 +6,7 @@ import java.util.InputMismatchException;
 
 public class GestionHotes {
 
-    private static void ajouterHote() {
-        while(true) {
-            try {
+    private static void ajouterHote() throws InputMismatchException, NumberFormatException {
                 System.out.println("----------------------------------------");
                 System.out.print("Saisir le nom de l'hôte : ");
                 String nom = Menu.scanner.next();
@@ -17,25 +15,34 @@ public class GestionHotes {
                 String prenom = Menu.scanner.next();
 
                 System.out.print("Saisir l'âge de l'hôte : ");
-                int age = Menu.scanner.nextInt();
-                if(age < 18)
-                    throw new NumberFormatException();
+                try {
+                    int age = Menu.scanner.nextInt();
+                    if (age < 18)
+                        throw new NumberFormatException("L'hôte doit être majeur pour s'enregister !");
 
-                Hote hote = new Hote(prenom, nom, age);
-                hote.afficher();
-                System.out.println(" a été ajouté comme hôte.");
-                break;
-            } catch (InputMismatchException e) {
-                Menu.scanner.next();
-                System.out.println("Nous n'avons pas compris votre saisie !");
-            } catch (NumberFormatException e) {
-                System.out.println("L'hôte doit être majeur pour s'enregister !");
-            }
-        }
+                    Hote hote = new Hote(prenom, nom, age);
+                    Menu.hotes.add(hote);
+                    hote.afficher();
+                    System.out.println(" a été ajouté comme hôte (id=" + (Menu.hotes.size() - 1) + ").");
+                } catch (InputMismatchException e) {
+                    Menu.scanner.next();
+                    throw new InputMismatchException("Nous n'avons pas compris votre saisie !");
+                }
     }
 
-    private static void supprimerHote() {
-
+    private static void supprimerHote() throws InputMismatchException, IndexOutOfBoundsException {
+        System.out.println("----------------------------------------");
+        System.out.print("Saisir l'identifiant de l'hôte  à supprimer : ");
+        try {
+            int id = Menu.scanner.nextInt();
+            Menu.hotes.remove(id);
+            System.out.println("L'hôte avec id=" + id + " a été supprimé.");
+        } catch (InputMismatchException e) {
+            Menu.scanner.next();
+            throw new InputMismatchException("Nous n'avons pas compris votre saisie !");
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Nous n'avons pas trouvé l'identifiant de l'hôte !");
+        }
     }
 
     static void listerHotes() {
@@ -48,9 +55,17 @@ public class GestionHotes {
 
             int valChoix = Menu.choix(3);
             if(valChoix == 1) {
-                ajouterHote();
+                try {
+                    ajouterHote();
+                } catch (NumberFormatException | InputMismatchException e) {
+                    System.out.println(e.getMessage());
+                }
             } else if (valChoix == 2) {
-                supprimerHote();
+                try {
+                    supprimerHote();
+                } catch (IndexOutOfBoundsException | InputMismatchException e) {
+                    System.out.println(e.getMessage());
+                }
             } else {
                 break;
             }

@@ -1,9 +1,13 @@
 package jpsave.airbnb.menu;
 
+import jpsave.airbnb.utilisateurs.Hote;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
     static Scanner scanner;
+    static ArrayList<Hote> hotes;
 
     static void listerMenu() {
         System.out.println("----------------------------------------");
@@ -43,6 +47,8 @@ public class Menu {
     }
 
     public static void main(String[] args) {
+        hotes = new ArrayList<Hote>();
+
         System.out.println("Bienvenue chez AirBnB");
         scanner = new Scanner(System.in);
 
