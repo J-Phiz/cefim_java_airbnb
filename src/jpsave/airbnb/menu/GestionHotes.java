@@ -32,17 +32,24 @@ public class GestionHotes {
 
     private static void supprimerHote() throws InputMismatchException, IndexOutOfBoundsException {
         System.out.println("----------------------------------------");
-        System.out.print("Saisir l'identifiant de l'hôte  à supprimer : ");
-        try {
-            int id = Menu.scanner.nextInt();
-            Menu.hotes.remove(id);
-            System.out.println("L'hôte avec id=" + id + " a été supprimé.");
-        } catch (InputMismatchException e) {
-            Menu.scanner.next();
-            throw new InputMismatchException("Nous n'avons pas compris votre saisie !");
-        } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Nous n'avons pas trouvé l'identifiant de l'hôte !");
+        System.out.print("Saisir le nom de l'hôte : ");
+        String nom = Menu.scanner.next();
+
+        System.out.print("Saisir le prénom de l'hôte : ");
+        String prenom = Menu.scanner.next();
+
+        Hote userHote = new Hote(prenom, nom, 1);
+
+        for (int i = 0; i < Menu.hotes.size(); i++) {
+            Hote currentHote = Menu.hotes.get(i);
+            if (userHote.equals(currentHote)) {
+                currentHote.afficher();
+                Menu.hotes.remove(i);
+                System.out.println(" a été supprimé.");
+                return;
+            }
         }
+        throw new IndexOutOfBoundsException("Nous n'avons pas trouvé l'identifiant de l'hôte !");
     }
 
     static void listerHotes() {

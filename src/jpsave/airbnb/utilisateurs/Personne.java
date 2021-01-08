@@ -16,4 +16,15 @@ public class Personne {
         System.out.print(prenom + " " + nom + " (" + age + " ans)");
     }
 
+    @Override
+    public boolean equals(Object anObject) {
+        if (this == anObject) {
+            return true;
+        }
+        if (anObject instanceof Personne) {
+            Personne p = (Personne)anObject;
+            return prenom.equals(p.prenom) && nom.equals(p.nom);
+        }
+        return false;
+    }
 }
