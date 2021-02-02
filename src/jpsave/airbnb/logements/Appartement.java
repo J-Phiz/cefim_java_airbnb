@@ -3,8 +3,8 @@ package jpsave.airbnb.logements;
 import jpsave.airbnb.utilisateurs.Hote;
 
 public class Appartement extends Logement {
-    private int numeroEtage;
-    private int superficieBalcon;
+    private final int numeroEtage;
+    private final int superficieBalcon;
 
     public Appartement(Hote hote,
                        int tarifParNuit,

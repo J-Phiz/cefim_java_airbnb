@@ -2,9 +2,9 @@ package jpsave.airbnb.utilisateurs;
 
 public class Personne {
 
-    private String prenom;
-    private String nom;
-    private int age;
+    private final String prenom;
+    private final String nom;
+    private final int age;
 
     public Personne(String prenom, String nom, int age) {
         this.prenom = prenom;

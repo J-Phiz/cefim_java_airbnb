@@ -3,8 +3,8 @@ package jpsave.airbnb.logements;
 import jpsave.airbnb.utilisateurs.Hote;
 
 public class Maison extends Logement {
-    private int superficieJardin;
-    private boolean possedePiscine;
+    private final int superficieJardin;
+    private final boolean possedePiscine;
 
     public Maison(Hote hote,
                   int tarifParNuit,
