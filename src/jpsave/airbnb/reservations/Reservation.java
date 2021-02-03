@@ -13,7 +13,17 @@ public class Reservation {
     private boolean estValidee;
     private final Date dateDeReservation;
 
+    /**
+     * Creation d'une reservation.
+     * @param sejour le séjour a assoicer à cette réservation
+     * @param voyageur le voyageur a associer à cette réservation
+     * @param dateDeReservation la data a laquelle la réservation a été faite
+     * @throws IllegalArgumentException si les parametres sont null
+     */
     public Reservation(Sejour sejour, Voyageur voyageur, Date dateDeReservation) {
+        if(sejour == null || voyageur == null || dateDeReservation == null) {
+            throw new IllegalArgumentException();
+        }
         this.sejour = (Sejour)sejour.clone();
         this.voyageur = voyageur;
         this.dateDeReservation = (Date)dateDeReservation.clone();
