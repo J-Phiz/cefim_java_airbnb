@@ -18,6 +18,11 @@ public class SejourLong extends Sejour implements ConditionsTarifairesInterface 
     }
 
     @Override
+    public boolean verificationNombreDeNuits(int nbNuits) {
+        return (nbNuits >= 6 && nbNuits <= 31);
+    }
+
+    @Override
     public boolean beneficiePromotion() {
         return true;
     }

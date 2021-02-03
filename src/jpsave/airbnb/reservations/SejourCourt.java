@@ -16,6 +16,11 @@ public class SejourCourt extends Sejour implements ConditionsTarifairesInterface
     }
 
     @Override
+    public boolean verificationNombreDeNuits(int nbNuits) {
+        return (nbNuits >= 1 && nbNuits < 6);
+    }
+
+    @Override
     public boolean beneficiePromotion() {
         return false;
     }
