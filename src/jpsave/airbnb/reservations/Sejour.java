@@ -4,7 +4,7 @@ import jpsave.airbnb.logements.Logement;
 
 import java.util.Date;
 
-public abstract class Sejour implements SejourInterface {
+public abstract class Sejour implements SejourInterface, Cloneable {
     private Date dateArrivee;
     protected Logement logement;
     private int nbVoyageurs;
@@ -120,4 +120,7 @@ public abstract class Sejour implements SejourInterface {
         logement.afficher();
         System.out.print(".\nLa date d'arrivée est le " + dateArrivee + " pour " + nbNuits + " nuits.");
     }
+
+    @Override
+    public abstract Object clone();
 }

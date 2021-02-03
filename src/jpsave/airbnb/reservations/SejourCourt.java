@@ -40,4 +40,13 @@ public class SejourCourt extends Sejour implements ConditionsTarifairesInterface
         super.afficher();
         System.out.print("\nLe prix de ce séjour est de " + tarif + "€.");
     }
+
+    @Override
+    public Object clone() {
+        return new SejourCourt(
+                this.getDateArrivee(),
+                this.getNbNuits(),
+                this.getLogement(),
+                this.getNbVoyageurs());
+    }
 }

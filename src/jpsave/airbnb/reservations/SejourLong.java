@@ -44,4 +44,13 @@ public class SejourLong extends Sejour implements ConditionsTarifairesInterface 
         super.afficher();
         System.out.print("\nLe prix de ce séjour est de " + tarif + "€ (" + promotion + "€ de promotion).");
     }
+
+    @Override
+    public Object clone() {
+        return new SejourLong(
+                this.getDateArrivee(),
+                this.getNbNuits(),
+                this.getLogement(),
+                this.getNbVoyageurs());
+    }
 }

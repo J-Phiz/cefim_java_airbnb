@@ -8,17 +8,29 @@ import java.util.Date;
 public class Reservation {
     private static int nbIdentifiants = 1;
     private int identifiant = 0;
-    private Sejour sejour;
-    private Voyageur voyageur;
+    private final Sejour sejour;
+    private final Voyageur voyageur;
     private boolean estValidee;
-    private Date dateDeReservation;
+    private final Date dateDeReservation;
 
     public Reservation(Sejour sejour, Voyageur voyageur, Date dateDeReservation) {
-        this.sejour = sejour;
+        this.sejour = (Sejour)sejour.clone();
         this.voyageur = voyageur;
-        this.dateDeReservation = dateDeReservation;
+        this.dateDeReservation = (Date)dateDeReservation.clone();
         this.estValidee = false;
         this.identifiant = nbIdentifiants++;
+    }
+
+    public Sejour getSejour() {
+        return (Sejour)sejour.clone();
+    }
+
+    public boolean isEstValidee() {
+        return estValidee;
+    }
+
+    public void setEstValidee(boolean estValidee) {
+        this.estValidee = estValidee;
     }
 
     public void afficher() {
