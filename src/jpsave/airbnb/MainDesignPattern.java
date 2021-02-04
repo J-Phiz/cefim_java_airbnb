@@ -6,6 +6,7 @@ import jpsave.airbnb.outils.MaDate;
 import jpsave.airbnb.reservations.Sejour;
 import jpsave.airbnb.reservations.SejourFactory;
 import jpsave.airbnb.utilisateurs.Hote;
+import jpsave.airbnb.utils.AirBnBData;
 
 public class MainDesignPattern {
     public static void main(String[] args) {
@@ -31,17 +32,13 @@ public class MainDesignPattern {
         System.out.println("Sejour3 est du type : " + sejour3.getClass());
         System.out.println("Sejour4 est du type : " + sejour4.getClass());
 
-        System.out.println();
-        sejour1.afficher();
-        System.out.println();
-        System.out.println();
-        sejour2.afficher();
-        System.out.println();
-        System.out.println();
-        sejour3.afficher();
-        System.out.println();
-        System.out.println();
-        sejour4.afficher();
-        System.out.println();
+
+        // Utilisation du Design Pattern Singleton
+        AirBnBData airBnBData = AirBnBData.getInstance();
+
+        airBnBData.hotes.add(new Hote("Vladimir", "Guez", 28, 12));
+        airBnBData.hotes.add(new Hote("Agathe", "Feeling", 55, 1));
+
+        airBnBData.hotes.forEach(Hote::afficher);
     }
 }

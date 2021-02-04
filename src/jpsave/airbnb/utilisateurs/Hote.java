@@ -21,7 +21,7 @@ public class Hote extends Personne {
         if(delaiDeReponse == 1) {
             System.out.print(" qui s'engage à répondre dans l'heure");
         } else {
-            System.out.print(" qui s'engage à répondre dans les " + delaiDeReponse + " heures");
+            System.out.println(" qui s'engage à répondre dans les " + delaiDeReponse + " heures");
         }
     }
 }
