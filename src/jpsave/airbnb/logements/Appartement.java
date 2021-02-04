@@ -18,6 +18,10 @@ public class Appartement extends Logement {
         this.superficieBalcon = superficieBalcon;
     }
 
+    public boolean isPossedeBalcon() {
+        return superficieBalcon > 0;
+    }
+
     public int getSuperficieTotal() {
         return this.getSuperficie() + superficieBalcon;
     }
