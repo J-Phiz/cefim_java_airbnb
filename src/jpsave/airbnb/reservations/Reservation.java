@@ -5,7 +5,7 @@ import jpsave.airbnb.utilisateurs.Voyageur;
 
 import java.util.Date;
 
-public class Reservation {
+public class Reservation implements Cloneable {
     private static int nbIdentifiants = 1;
     private int identifiant = 0;
     private final Sejour sejour;
@@ -49,5 +49,15 @@ public class Reservation {
         System.out.print(" a fait une réservation chez ");
         sejour.afficher();
         System.out.println("");
+    }
+
+    @Override
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
