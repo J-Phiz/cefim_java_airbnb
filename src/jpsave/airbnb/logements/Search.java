@@ -1,9 +1,10 @@
 package jpsave.airbnb.logements;
 
-import jpsave.airbnb.Possession;
+import jpsave.airbnb.enums.Possession;
 import jpsave.airbnb.utils.AirBnBData;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Search {
     private int nbVoyageurs;
@@ -25,21 +26,36 @@ public class Search {
     public ArrayList<Logement> result() {
         ArrayList<Logement> logements = new ArrayList<>(AirBnBData.getInstance().logements);
 
-        logements.removeIf(l -> nbVoyageurs > l.getNbVoyageursMax());
-        logements.removeIf(l -> l.getTarifParNuit() > tarifMaxParNuit);
-        logements.removeIf(l -> l.getTarifParNuit() < tarifMinParNuit);
-        if(possedeBalcon != Possession.UnKnown) {
-            logements.removeIf(l -> l instanceof Maison);
-            logements.removeIf(l -> possedeBalcon == Possession.Yes && !((Appartement) l).isPossedeBalcon());
-            logements.removeIf(l -> possedeBalcon == Possession.No && ((Appartement) l).isPossedeBalcon());
-        } else if(possedePiscine != Possession.UnKnown || possedeJardin != Possession.UnKnown) {
-            logements.removeIf(l -> l instanceof Appartement);
-            logements.removeIf(l -> possedePiscine == Possession.Yes && !((Maison) l).isPossedePiscine());
-            logements.removeIf(l -> possedePiscine == Possession.No && ((Maison) l).isPossedePiscine());
-            logements.removeIf(l -> possedeJardin == Possession.Yes && !((Maison) l).isPossedeJardin());
-            logements.removeIf(l -> possedeJardin == Possession.No && ((Maison) l).isPossedeJardin());
-        }
-        return logements;
+//        logements.removeIf(l -> nbVoyageurs > l.getNbVoyageursMax());
+//        logements.removeIf(l -> l.getTarifParNuit() > tarifMaxParNuit);
+//        logements.removeIf(l -> l.getTarifParNuit() < tarifMinParNuit);
+//        if(possedeBalcon != Possession.UnKnown) {
+//            logements.removeIf(l -> l instanceof Maison);
+//            logements.removeIf(l -> possedeBalcon == Possession.Yes && !((Appartement) l).isPossedeBalcon());
+//            logements.removeIf(l -> possedeBalcon == Possession.No && ((Appartement) l).isPossedeBalcon());
+//        } else if(possedePiscine != Possession.UnKnown || possedeJardin != Possession.UnKnown) {
+//            logements.removeIf(l -> l instanceof Appartement);
+//            logements.removeIf(l -> possedePiscine == Possession.Yes && !((Maison) l).isPossedePiscine());
+//            logements.removeIf(l -> possedePiscine == Possession.No && ((Maison) l).isPossedePiscine());
+//            logements.removeIf(l -> possedeJardin == Possession.Yes && !((Maison) l).isPossedeJardin());
+//            logements.removeIf(l -> possedeJardin == Possession.No && ((Maison) l).isPossedeJardin());
+//        }
+//        return logements;
+
+        return (ArrayList<Logement>) logements.stream()
+                .filter(l -> nbVoyageurs <= l.getNbVoyageursMax())
+                .filter(l -> l.getTarifParNuit() <= tarifMaxParNuit)
+                .filter(l -> l.getTarifParNuit() >= tarifMinParNuit)
+                .filter(l -> (possedeBalcon == Possession.Yes && l instanceof Appartement && ((Appartement) l).isPossedeBalcon()) ||
+                        (possedeBalcon == Possession.No && l instanceof Appartement && !((Appartement) l).isPossedeBalcon()) ||
+                        (possedeBalcon != Possession.Yes && l instanceof Maison) ||
+                        (possedePiscine == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedePiscine()) ||
+                        (possedePiscine == Possession.No && l instanceof Maison && !((Maison) l).isPossedePiscine()) ||
+                        (possedePiscine != Possession.Yes && l instanceof Appartement) ||
+                        (possedeJardin == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedeJardin()) ||
+                        (possedeJardin == Possession.No && l instanceof Maison && !((Maison) l).isPossedeJardin()) ||
+                        (possedeJardin != Possession.Yes && l instanceof Appartement))
+                .collect(Collectors.toList());
     }
 
     public static class SearchBuilder {

@@ -1,7 +1,7 @@
 package jpsave.airbnb;
 
+import jpsave.airbnb.enums.Possession;
 import jpsave.airbnb.logements.Appartement;
-import jpsave.airbnb.logements.Logement;
 import jpsave.airbnb.logements.Maison;
 import jpsave.airbnb.logements.Search;
 import jpsave.airbnb.outils.MaDate;
@@ -9,9 +9,6 @@ import jpsave.airbnb.reservations.Sejour;
 import jpsave.airbnb.reservations.SejourFactory;
 import jpsave.airbnb.utilisateurs.Hote;
 import jpsave.airbnb.utils.AirBnBData;
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.ArrayList;
 
 public class MainDesignPattern {
     public static void main(String[] args) {
