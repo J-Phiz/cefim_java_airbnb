@@ -41,4 +41,15 @@ public class Maison extends Logement {
         System.out.print("\nPiscine : " + (possedePiscine ? "Oui" : "Non"));
         System.out.print("\nSuperficie Totale : " + getSuperficieTotal() + "m2");
     }
+
+    @Override
+    public void afficherCourt() {
+        String resultat = String.format("type=%s ; tarif=%3d ; superficie=%3d ; maxpers=%3d ; balcon=%d ; jardin=%d ; piscine=%d ; adresse=%s",
+                "Maison", getTarifParNuit(), getSuperficie(), getNbVoyageursMax(), 0,
+                isPossedeJardin() ? 1 : 0,
+                isPossedePiscine() ? 1 : 0,
+                getAdresse());
+        System.out.println(resultat);
+    }
+
 }

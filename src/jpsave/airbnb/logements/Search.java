@@ -43,7 +43,7 @@ public class Search {
     }
 
     private Predicate<Logement> predicateTarif() {
-        return l -> l.getTarifParNuit() <= tarifMaxParNuit || l.getTarifParNuit() >= tarifMinParNuit;
+        return l -> l.getTarifParNuit() <= tarifMaxParNuit && l.getTarifParNuit() >= tarifMinParNuit;
     }
 
     private Predicate<Logement> predicateBalcon() {

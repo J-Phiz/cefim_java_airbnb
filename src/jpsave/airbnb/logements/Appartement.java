@@ -42,4 +42,13 @@ public class Appartement extends Logement {
             System.out.print("\nBalcon : Non");
         System.out.print("\nSuperficie Totale : " + getSuperficieTotal() + "m2");
     }
+
+    @Override
+    public void afficherCourt() {
+        String resultat = String.format("type=%s ; tarif=%3d ; superficie=%3d ; maxpers=%3d ; balcon=%d ; jardin=%d ; piscine=%d ; adresse=%s",
+                "Appart", getTarifParNuit(), getSuperficie(), getNbVoyageursMax(),
+                isPossedeBalcon() ? 1 : 0, 0, 0,
+                getAdresse());
+        System.out.println(resultat);
+    }
 }
