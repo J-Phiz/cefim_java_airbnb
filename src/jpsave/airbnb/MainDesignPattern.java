@@ -17,8 +17,8 @@ public class MainDesignPattern {
         Hote hote2 = new Hote("Agathe", "Feeling", 55, 1);
 
         // logements
-        Maison maison1 = new Maison(hote1, 50, "81 Rue Colbert, 37000 Tours", 140, 5, 500, true);
-        Maison maison2 = new Maison(hote2, 100, "Grand Place, 59000 Lille", 90, 4, 0, false);
+        Maison maison1 = new Maison(hote1, 100, "81 Rue Colbert, 37000 Tours", 140, 5, 500, true);
+        Maison maison2 = new Maison(hote2, 50, "Grand Place, 59000 Lille", 90, 4, 0, false);
         Appartement appartement1 = new Appartement(hote1, 10, "18 Rue de Bordeaux, 37000 Tours", 35, 2, 3, 7);
         Appartement appartement2 = new Appartement(hote2, 20, "29 Avenue Le Corbusier, 59800 Lille", 42, 3, 1, 0);
 

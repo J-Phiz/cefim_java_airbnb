@@ -29,6 +29,7 @@ public class Search {
                 .filter(predicateNbVoyageurs())
                 .filter(predicateTarif())
                 .filter(predicateBalcon().and(predicatePiscine()).and(predicateJardin()))
+                .sorted()
                 .collect(Collectors.toList());
     }
 

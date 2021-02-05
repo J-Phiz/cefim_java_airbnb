@@ -2,7 +2,7 @@ package jpsave.airbnb.logements;
 
 import jpsave.airbnb.utilisateurs.Hote;
 
-public abstract class Logement {
+public abstract class Logement implements Comparable<Logement> {
     private final Hote hote;
     private final int tarifParNuit;
     private final String adresse;
@@ -27,4 +27,9 @@ public abstract class Logement {
 
     public abstract void afficher();
 
+    @Override
+    public int compareTo(Logement logement) {
+        if (logement == null) throw new NullPointerException();
+        return this.tarifParNuit - logement.getTarifParNuit();
+    }
 }
