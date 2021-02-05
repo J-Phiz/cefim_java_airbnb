@@ -24,7 +24,7 @@ public class MainDesignPattern {
 
         // Utilisation du Design Pattern factory
         // Sejours
-        Sejour sejour1 = SejourFactory.getSejour(new MaDate("5/2/21"), 4, maison1, 3);
+        Sejour sejour1 = SejourFactory.getSejour(new MaDate("8/2/21"), 4, maison1, 3);
         Sejour sejour2 = SejourFactory.getSejour(new MaDate("27/03/21"), 1, appartement1, 1);
         Sejour sejour3 = SejourFactory.getSejour(new MaDate("12/04/2021"), 7, maison2, 4);
         Sejour sejour4 = SejourFactory.getSejour(new MaDate("30/05/2021"), 20, appartement2, 2);
