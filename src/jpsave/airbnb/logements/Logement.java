@@ -27,6 +27,10 @@ public abstract class Logement implements Comparable<Logement> {
 
     public abstract void afficher();
 
+    public void afficherAdresse() {
+        System.out.println(adresse);
+    }
+
     @Override
     public int compareTo(Logement logement) {
         if (logement == null) throw new NullPointerException();

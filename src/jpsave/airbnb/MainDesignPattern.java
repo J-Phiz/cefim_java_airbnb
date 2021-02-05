@@ -2,6 +2,7 @@ package jpsave.airbnb;
 
 import jpsave.airbnb.enums.Possession;
 import jpsave.airbnb.logements.Appartement;
+import jpsave.airbnb.logements.Logement;
 import jpsave.airbnb.logements.Maison;
 import jpsave.airbnb.logements.Search;
 import jpsave.airbnb.outils.MaDate;
@@ -58,12 +59,12 @@ public class MainDesignPattern {
         System.out.println();
         System.out.println();
         System.out.println("Résultat de la recherche 1 :");
-        recherche.result().forEach(logement -> System.out.println(logement.getAdresse()));
+        recherche.result().forEach(Logement::afficherAdresse);
 
         recherche = (new Search.SearchBuilder(1).possedeBalcon(Possession.Yes)).build();
         System.out.println();
         System.out.println();
         System.out.println("Résultat de la recherche 2 :");
-        recherche.result().forEach(logement -> System.out.println(logement.getAdresse()));
+        recherche.result().forEach(Logement::afficherAdresse);
     }
 }
