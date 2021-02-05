@@ -24,3 +24,4 @@ hs_err_pid*
 
 # Build directory generated with IntelliJ
 out/
+.idea/uiDesigner.xml
