@@ -25,25 +25,7 @@ public class Search {
     }
 
     public ArrayList<Logement> result() {
-        ArrayList<Logement> logements = new ArrayList<>(AirBnBData.getInstance().logements);
-
-//        logements.removeIf(l -> nbVoyageurs > l.getNbVoyageursMax());
-//        logements.removeIf(l -> l.getTarifParNuit() > tarifMaxParNuit);
-//        logements.removeIf(l -> l.getTarifParNuit() < tarifMinParNuit);
-//        if(possedeBalcon != Possession.UnKnown) {
-//            logements.removeIf(l -> l instanceof Maison);
-//            logements.removeIf(l -> possedeBalcon == Possession.Yes && !((Appartement) l).isPossedeBalcon());
-//            logements.removeIf(l -> possedeBalcon == Possession.No && ((Appartement) l).isPossedeBalcon());
-//        } else if(possedePiscine != Possession.UnKnown || possedeJardin != Possession.UnKnown) {
-//            logements.removeIf(l -> l instanceof Appartement);
-//            logements.removeIf(l -> possedePiscine == Possession.Yes && !((Maison) l).isPossedePiscine());
-//            logements.removeIf(l -> possedePiscine == Possession.No && ((Maison) l).isPossedePiscine());
-//            logements.removeIf(l -> possedeJardin == Possession.Yes && !((Maison) l).isPossedeJardin());
-//            logements.removeIf(l -> possedeJardin == Possession.No && ((Maison) l).isPossedeJardin());
-//        }
-//        return logements;
-
-        return (ArrayList<Logement>) logements.stream()
+        return (ArrayList<Logement>) AirBnBData.getInstance().logements.stream()
                 .filter(predicateNbVoyageurs())
                 .filter(predicateTarif())
                 .filter(predicateBalcon().and(predicatePiscine()).and(predicateJardin()))
@@ -63,71 +45,26 @@ public class Search {
         return l -> l.getTarifParNuit() <= tarifMaxParNuit || l.getTarifParNuit() >= tarifMinParNuit;
     }
 
-//    private Predicate<Logement> predicateBalcon() {
-//        return l -> (possedeBalcon == Possession.Yes && l instanceof Appartement && ((Appartement) l).isPossedeBalcon()) ||
-//                (possedeBalcon == Possession.No && l instanceof Appartement && !((Appartement) l).isPossedeBalcon()) ||
-//                (possedeBalcon != Possession.Yes && l instanceof Maison);
-//    }
     private Predicate<Logement> predicateBalcon() {
-        return new Predicate<Logement>() {
-            @Override
-            public boolean test(Logement l) {
-                System.out.print(l.getTarifParNuit() + "Début Balcon : ");
-                System.out.print((possedeBalcon == Possession.Yes && l instanceof Appartement && ((Appartement) l).isPossedeBalcon()) + " ");
-                System.out.print((possedeBalcon == Possession.No && l instanceof Appartement && !((Appartement) l).isPossedeBalcon()) + " ");
-                System.out.print((possedeBalcon != Possession.Yes && l instanceof Maison) + " ");
-                System.out.println("Fin");
-                return (possedeBalcon == Possession.UnKnown) ||
-                       (possedeBalcon == Possession.Yes && l instanceof Appartement && ((Appartement) l).isPossedeBalcon()) ||
-                       (possedeBalcon == Possession.No && l instanceof Appartement && !((Appartement) l).isPossedeBalcon()) ||
-                       (possedeBalcon == Possession.No && l instanceof Maison);
-            }
-        };
+        return l -> (possedeBalcon == Possession.UnKnown) ||
+                (possedeBalcon == Possession.Yes && l instanceof Appartement && ((Appartement) l).isPossedeBalcon()) ||
+                (possedeBalcon == Possession.No && l instanceof Appartement && !((Appartement) l).isPossedeBalcon()) ||
+                (possedeBalcon == Possession.No && l instanceof Maison);
     }
 
     private Predicate<Logement> predicatePiscine() {
-        return new Predicate<Logement>() {
-            @Override
-            public boolean test(Logement l) {
-                System.out.print(l.getTarifParNuit() + "Début Piscine : ");
-                System.out.print((possedePiscine == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedePiscine()) + " ");
-                System.out.print((possedePiscine == Possession.No && l instanceof Maison && !((Maison) l).isPossedePiscine()) + " ");
-                System.out.print((possedePiscine != Possession.Yes && l instanceof Appartement) + " ");
-                System.out.println("Fin");
-                return (possedePiscine == Possession.UnKnown) ||
-                        (possedePiscine == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedePiscine()) ||
-                        (possedePiscine == Possession.No && l instanceof Maison && !((Maison) l).isPossedePiscine()) ||
-                        (possedePiscine == Possession.No && l instanceof Appartement);
-            }
-        };
+        return l -> (possedePiscine == Possession.UnKnown) ||
+                (possedePiscine == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedePiscine()) ||
+                (possedePiscine == Possession.No && l instanceof Maison && !((Maison) l).isPossedePiscine()) ||
+                (possedePiscine == Possession.No && l instanceof Appartement);
     }
-    private Predicate<Logement> predicateJardin() {
-        return new Predicate<Logement>() {
-            @Override
-            public boolean test(Logement l) {
-                System.out.print(l.getTarifParNuit() + "Début Jardin : ");
-                System.out.print((possedeJardin == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedeJardin()) + " ");
-                System.out.print((possedeJardin == Possession.No && l instanceof Maison && !((Maison) l).isPossedeJardin()) + " ");
-                System.out.print((possedeJardin != Possession.Yes && l instanceof Appartement) + " ");
-                System.out.println("Fin");
-                return (possedeJardin == Possession.UnKnown) ||
-                        (possedeJardin == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedeJardin()) ||
-                        (possedeJardin == Possession.No && l instanceof Maison && !((Maison) l).isPossedeJardin()) ||
-                        (possedeJardin == Possession.No && l instanceof Appartement);
-            }
-        };
-    }
-//    private Predicate<Logement> predicatePiscine() {
-//        return l -> (possedePiscine == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedePiscine()) ||
-//                (possedePiscine == Possession.No && l instanceof Maison && !((Maison) l).isPossedePiscine()) ||
-//                (possedePiscine != Possession.Yes && l instanceof Appartement);
-//    }
 
-//    private Predicate<Logement> predicateJardin() {
-//        return l -> (possedeJardin == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedeJardin()) ||
-//            (possedeJardin == Possession.No && l instanceof Maison && !((Maison) l).isPossedeJardin()) ||
-//            (possedeJardin != Possession.Yes && l instanceof Appartement);
-//    }
+    private Predicate<Logement> predicateJardin() {
+        return l -> (possedeJardin == Possession.UnKnown) ||
+                (possedeJardin == Possession.Yes && l instanceof Maison && ((Maison) l).isPossedeJardin()) ||
+                (possedeJardin == Possession.No && l instanceof Maison && !((Maison) l).isPossedeJardin()) ||
+                (possedeJardin == Possession.No && l instanceof Appartement);
+    }
 
     public static class SearchBuilder {
 
